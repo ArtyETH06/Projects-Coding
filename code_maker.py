@@ -3,6 +3,7 @@
 #J'ai essayé au maximum d'expliquer les bases le plus simplement...
 #Tache finale NSI 1er
 
+from PIL import Image
 
 #On a des problèmes après avec les guillemets
 guillement = ' " '
@@ -20,7 +21,7 @@ def python_code_maker():
     while choix != 0:
 
         #Choix de l'utilisateur
-        choix = int(input("Console: Veuillez faire un choix: \n0_quitter\n1-Reset\n2-Afficher quelque chose\n3-Créer une variable\n4-Importer un module/fichier\n5-Aide\n6-Exemple\n?-???????"))
+        choix = int(input("Console: Veuillez faire un choix: \n0_quitter\n1-Reset\n2-Afficher quelque chose\n3-Créer une variable\n4-Importer un module/fichier\n5-Aide\n6-Exemple\n7-Créer un input\n?-???????\nVous avez sélectionné le menu " + str(choix) + "!"))
 
 #--------------------------------------------------------------------Choix 1 (reset)------------------------------------------------------------------
         if choix == 1:
@@ -38,10 +39,10 @@ def python_code_maker():
             with open("Python code.py", "a+") as file:
                 #Permet de concatoner toute la string
                 final_print = 'print('+guillement+to_print+guillement+')'
-                file.write('\n#To show something in the terminal,you have to use print("")\n')
+                file.write('\n#Pour afficher quelque chose dans le terminal, on utilise print("")\n')
                 #Mettre dans le code "Python Code" ce que l'utilsateur veut print
                 file.write(final_print)
-                print("Console: Vous venez d'afficher" + to_print + "!")
+                print("Console: Vous venez d'afficher " + to_print + "!")
                 file.close
 
 
@@ -50,30 +51,30 @@ def python_code_maker():
 
             choice2 = int(input("Console: Quel est le type de variable que vous voulez créer ?\n1-Une chaine de caractère\n2-Un nombre"))
             if choice2 == 1:
-                name = input("Quel est le nombre de votre variable ?")
-                value = input("Quel est la chaine de caractère que vous voulez mettre en valeur ?")
+                name = input("Quel est le nombre de votre variable ? ")
+                value = input("Quel est la chaine de caractère que vous voulez mettre en valeur ? ")
                 #On travaille sur le fichier "Python code"
                 with open("Python code.py", "a+") as file:
                     #Permet de concatoner toute la string
-                    final_print = name + '=' + guillement + value + guillement
+                    final_print = name + ' = ' + guillement + value + guillement
                     file.write('\n#Pour créer une variable de type string,vous devez mettre le nom de votre variable,puis un = et la valeur de votre variable entre guillemets\n')
                     #Mettre dans le code "Python Code" ce que l'utilsateur veut print
                     file.write(final_print)
-                    print("Console: Vous venez de créer la variable" + name + "de valeur" + value)
+                    print("Console: Vous venez de créer la variable " + name + " de valeur " + value)
                     file.close
 
 
             elif choice2 == 2:
-                name = input("Quel est le nom de votre variable ?")
-                value = float(input("Quel est la valeur de votre variable (nombre/chiffre)"))
+                name = input("Quel est le nom de votre variable ? ")
+                value = float(input("Quel est la valeur de votre variable (nombre/chiffre) "))
                 #On travaille sur le fichier "Python code"
                 with open("Python code.py", "a+") as file:
                     #Permet de concatoner toute la string
                     final_print = name + ' = ' + str(value)
-                    file.write('\n#Pour créer une variable,vous devez mettre le nom de votre variable,puis un = et la valeur de votre variable\n')
+                    file.write('\n#Pour créer7 une variable,vous devez mettre le nom de votre variable,puis un = et la valeur de votre variable\n')
                     #Mettre dans le code "Python Code" ce que l'utilsateur veut print
                     file.write(final_print)
-                    print("Console: Vous venez de créer la variable" + name + "de valeur" + str(value))
+                    print("Console: Vous venez de créer la variable " + name + " de valeur " + str(value))
                     file.close
 
             else:
@@ -88,7 +89,7 @@ def python_code_maker():
                 file.write('\n#Pour importer un fichier/module, vous devais faire: from XXX import *' )
                 file.write('\nfrom ' + name + ' import *\n' )
                 #Mettre dans le code "Python Code" ce que l'utilsateur veut print
-                print("Console: Vous venez d'importer le module/fichier" + name)
+                print("Console: Vous venez d'importer le module/fichier " + name)
                 file.close
 
 #-------------------------------------------------------------------------------5(Aide)-----------------------------------------------------------------
@@ -98,7 +99,7 @@ def python_code_maker():
             with open("Python code.py", "a+") as file:
                 file.write('#Cette vidéo peut aider pour les débutants en python ;) --> https://www.youtube.com/watch?v=dQw4w9WgXcQ\n')
                 #Mettre dans le code "Python Code" ce que l'utilsateur veut print
-                print("Console: Cette lesson vous aura servie ?")
+                print("Console: Cette leçon vous aura servie ?")
                 file.close
 
 #-------------------------------------------------------------------------------6(exemple)-----------------------------------------------------------------
@@ -124,6 +125,41 @@ def python_code_maker():
                 print("L'exemple a été généré avec succès !")
                 file.close
                 break
+
+#--------------------------------------------------------------------Choix 7 (input)------------------------------------------------------------------
+        elif choix == 7:
+
+            choice2 = int(input("Console: Quel est le type d'input que vous voulez créer ?\n1-Une chaine de caractère\n2-Un nombre(float)"))
+            if choice2 == 1:
+                name = input("Quel est le nombre de votre input ? ")
+                value = input("Quel est le message de votre input ? ")
+                #On travaille sur le fichier "Python code"
+                with open("Python code.py", "a+") as file:
+                    #Permet de concatoner toute la string
+                    final_print = name + ' = ' + "input(" + guillement + value + guillement + ")"
+                    file.write('\n#Pour créer un un input de chaine de caractère,on doit mettre: nom de la variable = input("message")\n')
+                    #Mettre dans le code "Python Code" ce que l'utilsateur veut print
+                    file.write(final_print)
+                    print("Console: Vous venez de créer un input " + name + " avec pour message " + value)
+                    file.close
+
+
+            elif choice2 == 2:
+                name = input("Quel est le nombre de votre input ? ")
+                value = input("Quel est le message de votre input ? ")
+                #On travaille sur le fichier "Python code"
+                with open("Python code.py", "a+") as file:
+                    #Permet de concatoner toute la string
+                    final_print = name + ' = ' + "float (input(" + guillement + value + guillement + "))"
+                    file.write('\n#Pour créer un un input de chiffre/nombre,on doit mettre: nom de la variable = int(input("message"))\n')
+                    #Mettre dans le code "Python Code" ce que l'utilsateur veut print
+                    file.write(final_print)
+                    print("Console: Vous venez de créer un input " + name + " avec pour message " + value)
+                    file.close
+
+            else:
+                print("Console: Error 404 ")
+                break
 #--------------------------------------------------------------------Choix ? (?)----------------------------------------------------------
         elif choix == 10:
 
@@ -139,11 +175,53 @@ def python_code_maker():
                 print("Console: Erreu.Errzur Syt..eteing:...Fin du système, la simulation est terminée.")
                 break
 
+        if (7 < choix and choix < 10) or choix > 10:
+            print("Console: Veuillez choisir un chiffre valide...:/")
 
 #--------------------------------------------------------------------Choix 0 (Si l'utilisateur quitte)------------------------------------------------------------------
     #Si l'utilisateur a fait 0 (quitte)
     print("Console: Vous avez quitté le terminal")
 
 
+
+
+
+#Fonction d'apprentissage !
+def learn():
+    print("Console: Bienvenue dans l'interface de lesson !")
+    choice = int(input("Console: Veuillez choisir votre lesson:\n1-Les imports\n2-Variables\n3-Afficher quelque chose\n4-Fonction"))
+
+
+#-----------------------------------------------------------------------------Les imports---------------------------------------------------------
+    if choice == 1:
+        print("Console: Bienvenue dans cette première lesson,vous allez apprendre à importer des modules/fichiers !")
+        print("Console: Pour importer des modules/fichiers,vous devez faire:")
+        print("from XXX import *\n Cela va importer toutes les fonctions/variables que contient le fichier...")
+        print("Console: Essayez,et si vous pensez que c'est bon,validez !")
+        user_input = input("Veuillez importer tout ce que contien le fichier 'math' \n")
+        verify = "from math import *"
+        good = 0
+
+        while good == 0:
+
+            if user_input == verify:
+                    print("Console: Félicitations ! Vous avez obtenu un badge !")
+                    #Ouvrir le badge obtenu
+                    img = Image.open("import.png")
+                    img.show()
+                    sortir de la boucle
+                    good = 1
+                    break
+
+                
+            else:
+                print("Console: Ce n'est pas bon...Essayez encore")
+
+    
+        
+
+
+
+
 #On exécute la fonction
-python_code_maker()
+learn()
